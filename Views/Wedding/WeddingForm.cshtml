@@ -1,0 +1,22 @@
+@model weddingplanner.Models.Wedding
+<h1>Plan Your Wedding</h1>
+<form asp-action="addWedding" method="POST">
+    <div class='form-group'>
+    <label asp-for="WedderOne"></label>
+    <input class='form-control'asp-for="WedderOne"><br>
+    </div>
+    <div class='form-group'>
+    <label asp-for="WedderTwo"></label>
+    <input class='form-control' asp-for="WedderTwo"><br>
+    </div>
+    <div class='form-group'>
+    <label asp-for="WeddingDate"></label>
+    <input class='form-control' type="date" asp-for="WeddingDate"><br>
+    </div>
+    <div class='form-group'>
+    <label asp-for="WeddingAddress"></label>
+    <input class='form-control' asp-for="WeddingAddress"><br>
+    </div>
+    <input class='btn btn-primary' type='submit' value='Create'>
+</form>
+<div asp-validation-summary="All"></div>

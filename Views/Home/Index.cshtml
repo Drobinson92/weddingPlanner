@@ -1,0 +1,30 @@
+﻿@model weddingplanner.Models.RegisterViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id='reg'>
+<h2>Register</h2>
+<form class="row" asp-action="Register" method="POST">
+    <label class="col-sm-2" asp-for="FirstName"></label>
+    <input asp-for="FirstName"><br>
+    <label class="col-sm-2" asp-for="LastName"></label>
+    <input asp-for="LastName"><br>
+    <label class="col-sm-2" asp-for="Email"></label>
+    <input asp-for="Email"><br>
+    <label class="col-sm-2" asp-for="Password"></label>
+    <input type='password' asp-for="Password"><br>
+    <label class="col-sm-2" asp-for="PasswordCheck"></label>
+    <input type='password' asp-for="PasswordCheck"><br>
+    <input class='btn btn-primary' type='submit' value="Register">
+</form>
+<div class="text-danger bg-warning" asp-validation-summary="All"></div>
+@if(ViewBag.Error != null){
+    <p class="text-danger bg-warning">@ViewBag.Error</p>
+}
+</div>
+<div id='log'>
+    
+
+@Html.Partial("Login")
+</div>

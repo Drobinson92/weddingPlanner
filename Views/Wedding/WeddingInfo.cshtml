@@ -1,0 +1,9 @@
+<h1 class='text-info'>@ViewBag.wedding.WedderOne & @ViewBag.wedding.WedderTwo's wedding</h1>
+<a class='btn btn-info pull-right' asp-action="Logout" asp-controller="Wedding">Logout</a>
+<a class='btn btn-info pull-right' asp-action="Wedding" asp-controller="Wedding">Dashboard</a>
+<h3 class='text-primary'>@ViewBag.wedding.WeddingAddress</h3>
+<h3 class='text-danger'>Date: @ViewBag.wedding.WeddingDate.ToString("MMMM dd, yyyy")</h3>
+<h3 class='text-muted'>Guests:</h3>
+@foreach(var user in @ViewBag.wedding.UsersWeddings){
+    <p>@user.Users.FirstName @user.Users.LastName</p>
+}

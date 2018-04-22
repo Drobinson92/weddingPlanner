@@ -1,0 +1,37 @@
+<h1>Welcome to the Wedding Planner</h1>
+<a class='btn btn-sm btn-info' asp-action="Logout">Log Out</a><br>
+
+<table class="table-striped table-bordered">
+    <th class="col-sm-2">Wedding</th>
+    <th class="col-sm-2">Date</th>
+    <th class="col-sm-2">Guests</th>
+    <th class="col-sm-2">Action</th>
+    @foreach(Wedding wed in ViewBag.Weddings){
+        <tr>
+            <td><a asp-action="WeddingInfo" asp-controller="Wedding" asp-route-id="@wed.WeddingId">@wed.WedderOne and @wed.WedderTwo</a></td>
+            <td>@wed.WeddingDate.ToString("MMM dd, yyyy")</td>
+            <td>@wed.UsersWeddings.Count</td>
+            @if(wed.CreatedBy == @ViewBag.loggedId){
+                <td><a asp-action="Delete" asp-controller="Wedding" asp-route-id="@wed.WeddingId">Delete</a></td>
+            }
+            else{
+                bool going = false;
+                @foreach(UsersWeddings plan in @wed.UsersWeddings){
+                    if(@plan.Users != null){
+                        if((int) @plan.Users.UserId == (int)@ViewBag.loggedId){
+                            going = true;
+                        }
+                    }
+                }
+                    if(!going){
+                        <td><a asp-action="RSVP" asp-controller="Wedding" asp-route-id="@wed.WeddingId">RSVP</a></td>
+                    }
+                    else{
+                        <td><a asp-action="unRSVP" asp-controller="Wedding" asp-route-id="@wed.WeddingId">un-RSVP</a></td>
+                    }
+            }
+                
+        </tr>
+    }
+</table>
+<a class="btn btn-primary" asp-action="WeddingForm">New Wedding</a>
