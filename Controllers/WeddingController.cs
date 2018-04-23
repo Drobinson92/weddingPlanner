@@ -46,7 +46,7 @@ namespace weddingplanner.Controllers{
             _context.SaveChanges();
             return RedirectToAction("Wedding");
         }
-        return RedirectToAction("WeddingForm");   
+        return View("WeddingForm");   
     }
     public IActionResult WeddingInfo(int id){
         Wedding w = _context.Weddings.Include(a => a.UsersWeddings).ThenInclude(a => a.Users).SingleOrDefault(u => u.WeddingId == id);
