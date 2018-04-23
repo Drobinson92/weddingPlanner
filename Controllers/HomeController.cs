@@ -21,6 +21,8 @@ namespace weddingplanner.Controllers
         {
             return View();
         }
+
+        [HttpPost]
         public IActionResult Register(RegisterViewModel user){
             if(ModelState.IsValid){
                 User check = _context.Users.SingleOrDefault(a => a.Email == user.Email);
@@ -47,7 +49,8 @@ namespace weddingplanner.Controllers
             }
             return View("Index");
         }
-                public IActionResult Login(LoginViewModel user){
+        [HttpPost]
+        public IActionResult Login(LoginViewModel user){
             // List<User> u = _context.Users.Where(a => a.Email == user.Email).ToList();
             if(ModelState.IsValid){
 
