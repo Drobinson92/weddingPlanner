@@ -24,6 +24,7 @@ namespace weddingplanner.Controllers
 
         [HttpPost]
         public IActionResult Register(RegisterViewModel user){
+            Console.WriteLine("registering...");
             if(ModelState.IsValid){
                 User check = _context.Users.SingleOrDefault(a => a.Email == user.Email);
                 if(check != null){
@@ -41,20 +42,24 @@ namespace weddingplanner.Controllers
                     UpdatedAt = DateTime.Now
                 };
                 // HttpContext.Session.SetString("email", u.Email);
+                System.Console.WriteLine("about to save");
                 _context.Add(u);
                 _context.SaveChanges();
                 User newUser = _context.Users.SingleOrDefault(a => a.Email == user.Email);
                 HttpContext.Session.SetInt32("id", newUser.UserId);
+                System.Console.WriteLine("about to redirect");
                 return RedirectToAction("Wedding", "Wedding");
             }
             return View("Index");
         }
         [HttpPost]
         public IActionResult Login(LoginViewModel user){
+            System.Console.WriteLine("logging in");
             // List<User> u = _context.Users.Where(a => a.Email == user.Email).ToList();
             if(ModelState.IsValid){
 
             User u = _context.Users.SingleOrDefault(a => a.Email == user.Email);
+            System.Console.WriteLine("got a user");
             if(u != null){
             if(user.Email != null && user.Password != null){
                 var Hasher = new PasswordHasher<LoginViewModel>();
